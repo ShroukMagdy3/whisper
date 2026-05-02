@@ -33,9 +33,9 @@ app.use(errorHandler);
 const PORT = process.env.PORT || 3000;
 
 // Only start the server if this file is run directly (not imported)
-if (import.meta.url === `file://${process.argv[1]}`) {
+// if (import.meta.url === `file://${process.argv[1]}`) {
     await connectDB();
     app.listen(PORT, () => console.log(`whisper listening on ${PORT}`));
-}
+// }
 
 export default app;
