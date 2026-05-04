@@ -2,6 +2,8 @@ import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
+import { fileURLToPath } from 'node:url';
+import { dirname, join } from 'node:path';
 import { connectDB } from '../config/db.js';
 import { notFound } from '../middleware/notFound.js';
 import { errorHandler } from '../middleware/errorHandler.js';
@@ -28,7 +30,8 @@ app.use('/api/users', userRoutes);
 app.use('/api/questions', questionRoutes);
 app.use('/api/feed', feedRoutes);
 
-app.use(express.static('public'));
+const __dirname = dirname(fileURLToPath(import.meta.url));
+app.use(express.static(join(__dirname, '../public')));
 
 app.use(notFound);
 app.use(errorHandler);
